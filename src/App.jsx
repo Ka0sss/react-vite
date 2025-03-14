@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Button = (props) => {
-  return <button onClick={props.onClick}>{props.text}</button>;
+  return <button className={props.className} onClick={props.onClick}>{props.text}</button>;
 };
 
 const TablesDates = (props) => {
   return (
-    <tr>
+    <tr className={props.className}>
       <td>{props.textTb}</td>
       <td>{props.valueTb}</td>
     </tr>
@@ -72,24 +73,24 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h2>give feedback</h2>
-      <Button onClick={handleClickGood} text={'good'} />
-      <Button onClick={handleClickNeutral} text={'neutral'} />
-      <Button onClick={handleClickBad} text={'bad'} />
-      <h2>statistics</h2>
-      <table>
+    <div className='bg-dark container-fluid text-center'>
+      <h2 className=' display-6 text-white'>give feedback</h2>
+      <Button className={"btn btn-primary me-2"} onClick={handleClickGood} text={'good'} />
+      <Button className={"btn btn-secondary me-2"} onClick={handleClickNeutral} text={'neutral'} />
+      <Button className={"btn btn-danger"} onClick={handleClickBad} text={'bad'} />
+      <h2 className='text-white display-6'>statistics</h2>
+      <table className='d-flex justify-content-center'>
         <tbody>
-          <TablesDates textTb={"good"} valueTb={good}/>
-          <TablesDates textTb={"neutral"} valueTb={neutral}/>
-          <TablesDates textTb={"bad"} valueTb={bad}/>
-          <TablesDates textTb={"all"} valueTb={total}/>
-          <TablesDates textTb={"average"} valueTb={average}/>
-          <TablesDates textTb={"positive"} valueTb={`${good === 0 ? 0 :(good / total) * 100}%`}/>
+          <TablesDates className={"text-white bg-dark"} textTb={"good"} valueTb={good}/>
+          <TablesDates className={"text-white bg-dark"} textTb={"neutral"} valueTb={neutral}/>
+          <TablesDates className={"text-white bg-dark"} textTb={"bad"} valueTb={bad}/>
+          <TablesDates className={"text-white bg-dark"} textTb={"all"} valueTb={total}/>
+          <TablesDates className={"text-white bg-dark"} textTb={"average"} valueTb={average}/>
+          <TablesDates className={"text-white bg-dark"} textTb={"positive"} valueTb={`${good === 0 ? 0 :(good / total) * 100}%`}/>
         </tbody>
       </table>
-      <div>{anecdotes[selected]}</div>
-      <Button onClick={nextAnecdote} text={"next anecdote"}/>
+      <div className='bg-dark-subtle text-center p-4'>{anecdotes[selected]}</div>
+      <Button className={"btn btn-primary"} onClick={nextAnecdote} text={"next anecdote"}/>
     </div>
   );
 };
